@@ -1,9 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk"  >
 
   <PropertyGroup> 
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputType>Library</OutputType>
-    <TargetFramework>netstandard2.0</TargetFramework> 
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>StackExchange.Redis.Extensions.NetCore</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

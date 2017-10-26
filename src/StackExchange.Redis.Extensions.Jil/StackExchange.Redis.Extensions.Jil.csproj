@@ -4,6 +4,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputType>Library</OutputType>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>StackExchange.Redis.Extensions.JilCore</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
