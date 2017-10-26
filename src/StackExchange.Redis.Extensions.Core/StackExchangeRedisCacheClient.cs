@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using StackExchange.Redis.Extensions.Core.ServerIteration;
 using StackExchange.Redis.Extensions.Core.Configuration;
 using StackExchange.Redis.Extensions.Core.Extensions;
@@ -23,7 +24,7 @@ namespace StackExchange.Redis.Extensions.Core
 		/// </summary>
 		/// <param name="serializer">The serializer.</param>
 		/// <param name="configuration">The configuration.</param>
-		public StackExchangeRedisCacheClient(ISerializer serializer, IRedisCachingConfiguration configuration = null)
+		public StackExchangeRedisCacheClient(IConfigurationRoot configRoot, ISerializer serializer, IRedisCachingConfiguration configuration = null)
 		{
 			if (serializer == null)
 			{
@@ -32,12 +33,12 @@ namespace StackExchange.Redis.Extensions.Core
 
 			if (configuration == null)
 			{
-				configuration = RedisCachingSectionHandler.GetConfig();
+				configuration = RedisCachingSectionHandler.GetConfig(configRoot);
 			}
 
 			if (configuration == null)
 			{
-				throw new ConfigurationErrorsException(
+				throw new Exception(
 					"Unable to locate <redisCacheClient> section into your configuration file. Take a look https://github.com/imperugo/StackExchange.Redis.Extensions");
 			}
 
@@ -51,7 +52,7 @@ namespace StackExchange.Redis.Extensions.Core
 			};
 			serverEnumerationStrategy = configuration.ServerEnumerationStrategy;
 
-			foreach (RedisHost redisHost in configuration.RedisHosts)
+			foreach (RedisHost redisHost in configuration.Hosts)
 			{
 				options.EndPoints.Add(redisHost.Host, redisHost.CachePort);
 			}

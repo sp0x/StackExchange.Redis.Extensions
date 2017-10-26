@@ -5,13 +5,13 @@
 	/// </summary>
 	public interface IRedisCachingConfiguration
 	{
-		/// <summary>
-		/// The host of Redis Server
-		/// </summary>
-		/// <value>
-		/// The ip or name
-		/// </value>
-		RedisHostCollection RedisHosts { get; }
+        /// <summary>
+        /// The host of Redis Server
+        /// </summary>
+        /// <value>
+        /// The ip or name
+        /// </value>
+        RedisHost[] Hosts { get; }
 
 		/// <summary>
 		/// The strategy to use when executing server wide commands

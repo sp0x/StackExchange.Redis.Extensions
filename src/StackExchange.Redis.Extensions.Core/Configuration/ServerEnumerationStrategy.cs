@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace StackExchange.Redis.Extensions.Core.Configuration
 {
-	public class ServerEnumerationStrategy : ConfigurationElement
+	public class ServerEnumerationStrategy
 	{
 		public enum ModeOptions
 		{
@@ -22,26 +22,10 @@ namespace StackExchange.Redis.Extensions.Core.Configuration
 			Throw = 0,
 			IgnoreIfOtherAvailable
 		}
+         
+	    public ModeOptions Mode { get; set; } = ModeOptions.All;
+	    public TargetRoleOptions TargetRole { get; set; } = TargetRoleOptions.Any;
 
-		[ConfigurationProperty("mode", IsRequired = false, DefaultValue = "All")]
-		public ModeOptions Mode
-		{
-			get { return (ModeOptions)base["mode"]; }
-			set { base["mode"] = value; }
-		}
-
-		[ConfigurationProperty("targetRole", IsRequired = false, DefaultValue = "Any")]
-		public TargetRoleOptions TargetRole
-		{
-			get { return (TargetRoleOptions)base["targetRole"]; }
-			set { base["targetRole"] = value; }
-		}
-
-		[ConfigurationProperty("unreachableServerAction", IsRequired = false, DefaultValue = "Throw")]
-		public UnreachableServerActionOptions UnreachableServerAction
-		{
-			get { return (UnreachableServerActionOptions)base["unreachableServerAction"]; }
-			set { base["unreachableServerAction"] = value; }
-		}
+	    public UnreachableServerActionOptions UnreachableServerAction { get; set; } = UnreachableServerActionOptions.Throw;
 	}
 }
